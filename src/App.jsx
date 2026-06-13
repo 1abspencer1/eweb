@@ -5,7 +5,7 @@ import Cart from "./componects/functions/Cart";
 import Nav from "./componects/Nav/Nav";
 import { products } from "./componects/functions/data";
 import ScrollToTop from "./componects/functions/ScrollToTop";
-import Shop from "./pages/Shop";
+import Shop from "./pages/shop";
 import Footer from "./componects/footer/Footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
