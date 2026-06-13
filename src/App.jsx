@@ -12,6 +12,9 @@ import Contact from "./pages/Contact";
 
 import Login from "./pages/Login"; // ✅ your login page
 import SignUp from "./pages/Sighup";
+import Checkout from "./pages/Checkout";
+import CategoryPage from "./pages/CategoryPage";
+import CollectionPage from "./pages/CollectionPage";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
           element={<ProductPage products={products} />}
         />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/category/:name" element={<CategoryPage />} />
+        <Route path="/collection/:id" element={<CollectionPage />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

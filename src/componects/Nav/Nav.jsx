@@ -74,17 +74,26 @@ const Nav = () => {
       </nav>
 
       {/* Mobile Hamburger */}
-      <div className="md:hidden z-20" onClick={() => setMenuOpen(!menuOpen)}>
+      <button
+        aria-label="Toggle menu"
+        aria-expanded={menuOpen}
+        aria-controls="mobile-menu"
+        className="md:hidden z-20"
+        onClick={() => setMenuOpen((s) => !s)}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setMenuOpen(false);
+        }}
+      >
         {menuOpen ? (
           <X className="w-8 h-8 cursor-pointer text-white" />
         ) : (
           <Menu className="w-8 h-8 cursor-pointer text-white" />
         )}
-      </div>
+      </button>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="mobile-nav md:hidden">
+        <nav id="mobile-menu" className="mobile-nav md:hidden" aria-label="Mobile menu">
           <ul className="mobile-list">
             {Data.map((item) => (
               <li key={item.id}>
@@ -144,7 +153,7 @@ const Nav = () => {
               </li>
             )}
           </ul>
-        </div>
+        </nav>
       )}
     </header>
   );

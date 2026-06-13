@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-motion
+import { Link } from "react-router-dom";
 const collections = [
   {
     id: 1,
@@ -63,9 +63,11 @@ const ExclusiveCollections = () => {
               <h3 className="text-2xl font-bold text-yellow-400 drop-shadow-lg">
                 {item.title}
               </h3>
-              <button className="mt-3 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-500 transition duration-300">
-                Discover →
-              </button>
+              <Link to={`/collection/${item.id}`} className="inline-block mt-3">
+                <button className="px-5 py-2 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-500 transition duration-300">
+                  Discover →
+                </button>
+              </Link>
             </div>
           </motion.div>
         ))}

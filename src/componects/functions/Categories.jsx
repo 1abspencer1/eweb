@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-motion
+import { Link } from "react-router-dom";
 const categories = [
   { name: "Luxury Watches", image: "/ls.avif" },
   { name: "Gold Chains", image: "/lc.avif" },
@@ -23,14 +23,16 @@ export default function Categories() {
               key={index}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="relative group overflow-hidden rounded-2xl shadow-xl cursor-pointer"
-        Premium Sunglasses    >
+              className="relative group overflow-hidden rounded-2xl shadow-xl"
+            >
               {/* Background image */}
-              <img
+              <Link to={`/category/${encodeURIComponent(cat.name)}`}>
+                <img
                 src={cat.image}
                 alt={cat.name}
                 className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out"
               />
+              </Link>
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition duration-500 flex items-end justify-center">

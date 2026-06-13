@@ -1,5 +1,5 @@
 // src/context/CartContext.jsx
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();
@@ -7,15 +7,23 @@ const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  const { user } = useAuth(); // ✅ get user from AuthContext
-  const [cart, setCart] = useState([]);
+  const { user } = useAuth();
+  const [cart, setCart] = useState(() => {
+    try {
+      const raw = localStorage.getItem("cart");
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } catch (e) {}
+  }, [cart]);
 
   const addToCart = (product) => {
-    if (!user) {
-      alert("Please sign in first");
-      return;
-    }
-
     setCart((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
@@ -41,7 +49,6 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => setCart([]);
 
-  // ✅ total count of all items
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
 
   return (
